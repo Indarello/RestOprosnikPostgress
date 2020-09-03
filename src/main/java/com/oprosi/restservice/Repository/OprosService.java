@@ -78,8 +78,10 @@ public class OprosService
 
     public List<Vopros> getAllVopros(long opros_id)
     {
-        String sql = "select * from vopros ORDER BY poradok WHEN poradok>0 then 0 else 1 end, poradok";
+        String sql = "SELECT * from vopros ORDER BY CASE WHEN poradok >= 0 THEN 1 ELSE 2 END, poradok";
 
+            
+        //WHEN poradok>0
 
         List<Vopros> voprosi = jdbcTemplate.query(sql,
                 new RowMapper<Vopros>()
